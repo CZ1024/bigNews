@@ -58,7 +58,10 @@
                 dataType: "json",
                 success: function(res) {
                     if (res.code == 200) {
-                        alert("登录成功")
+                        // alert("登录成功")
+                        console.log(res);
+
+                        localStorage.setItem("token", res.token)
                         location.href = "./index.html"
                     } else {
                         alert(res.msg)
