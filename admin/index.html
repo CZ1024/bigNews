@@ -96,6 +96,12 @@
     $(".level01").click(function() {
         $(this).addClass("active").siblings().removeClass("active")
     })
+
+    //退出功能   
+    $(".logout").click(function() {
+        localStorage.removeItem("token");
+        location.href = "./index.html"
+    })
 </script>
 
 
