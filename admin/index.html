@@ -64,9 +64,9 @@
     //获取用户信息
     $.ajax({
             url: "http://localhost:8080/api/v1/admin/user/info",
-            headers: {
-                Authorization: localStorage.getItem("token")
-            },
+            // headers: {
+            //     Authorization: localStorage.getItem("token")
+            // },
             success: function(res) {
                 // console.log(res);
                 $(".user_info>span").text("欢迎  " + res.data.nickname);
@@ -75,15 +75,15 @@
 
             },
             //如果用户没有通过登录页直接访问首页需要返回登录
-            error: function(res) {
-                if (res.statusText == "Forbidden") {
-                    alert("通过验证登录")
-                    location.href = "./login.html"
-                }
+            // error: function(res) {
+            //     if (res.statusText == "Forbidden") {
+            //         alert("通过验证登录")
+            //         location.href = "./login.html"
+            //     }
 
 
 
-            }
+            // }
 
         })
         //下拉菜单
