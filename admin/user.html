@@ -87,6 +87,7 @@
 
                 $("." + key).val(res.data[key])
             }
+            $(".user_pic").attr("src", res.data.userPic)
 
         }
     });
@@ -94,27 +95,37 @@
     // console.log($("#btn-edit"));
 
     $(".btn-edit").click(function(e) {
-        e.preventDefault()
-        console.log(1);
+            e.preventDefault()
+            console.log(1);
 
-        var from = document.querySelector("form");
-        var fromdata = new FormData(from);
-        $.ajax({
-            type: "POST",
-            url: urls.edit,
-            data: fromdata,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                console.log(res);
+            var from = document.querySelector("form");
+            var fromdata = new FormData(from);
+            $.ajax({
+                type: "POST",
+                url: urls.edit,
+                data: fromdata,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    console.log(res);
 
-                if (res.code == 200) {
-                    alert(res.msg)
-                    window.parent.location.reload();
+                    if (res.code == 200) {
+                        alert(res.msg)
+                        window.parent.location.reload();
+                    }
+
                 }
 
-            }
-
+            })
         })
+        //  图片的预览    
+
+    $("#exampleInputFile").change(function() {
+        this.files[0]; //伪数组的形式
+
+        var url = URL.createObjectURL(this.files[0]);
+        console.log(url);
+        $(".user_pic").attr("src", url)
+
     })
 </script>
