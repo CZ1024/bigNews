@@ -89,5 +89,32 @@
             }
 
         }
+    });
+    //修改个人信息
+    // console.log($("#btn-edit"));
+
+    $(".btn-edit").click(function(e) {
+        e.preventDefault()
+        console.log(1);
+
+        var from = document.querySelector("form");
+        var fromdata = new FormData(from);
+        $.ajax({
+            type: "POST",
+            url: urls.edit,
+            data: fromdata,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                console.log(res);
+
+                if (res.code == 200) {
+                    alert(res.msg)
+                    window.parent.location.reload();
+                }
+
+            }
+
+        })
     })
 </script>
