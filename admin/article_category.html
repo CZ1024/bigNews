@@ -96,20 +96,49 @@
 </script>
 <script>
     //渲染数据
-    $.ajax({
-        type: "get",
-        url: urls.list,
-        success: function(res) {
-            console.log(res);
-            if (res.code == 200) {
-                var str = template("muban", res)
-                console.log(str);
+    function load() {
+        $.ajax({
+            type: "get",
+            url: urls.list,
+            success: function(res) {
+                console.log(res);
+                if (res.code == 200) {
+                    var str = template("muban", res)
+                    console.log(str);
+
+                }
+
+                //加上
+                $("tbody").html(str);
 
             }
+        })
+    }
 
-            //加上
-            $("tbody").html(str)
+    load();
+    //新增类别
+    $(".btn-primary").click(function() {
 
-        }
+        var name = $("#exampleInputEmail1").val();
+        var slug = $("#exampleInputPassword1").val();
+
+
+        $.ajax({
+            url: urls.add,
+            type: "POST",
+            data: {
+                name: name,
+                slug: slug
+            },
+            success: function(res) {
+                if (res.code == 201) {
+                    alert("添加成功");
+                    $('#myModal').modal('hide')
+                    load();
+                }
+
+            }
+        })
+
     })
 </script>
