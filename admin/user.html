@@ -56,8 +56,7 @@
                 <div class="form-group">
                     <label for="inputEmail4" class="col-sm-2 control-label">密码：</label>
                     <div class="col-sm-4">
-                        <input type="password" name="password" class="form-control password" id="inputEmail4"
-                            value="12345678">
+                        <input type="password" name="password" class="form-control password" id="inputEmail4" value="12345678">
                     </div>
                 </div>
                 <div class="form-group">
@@ -71,3 +70,24 @@
 </body>
 
 </html>
+
+<script>
+    //获取用户信息
+    $.ajax({
+        url: urls.detail,
+        success: function(res) {
+            console.log(res);
+            // $("#inputEmail1").val(res.data.username)
+            // $("#inputEmail2").val(res.data.nickname)
+            // $("#inputEmail3").val(res.data.email)
+            // $("#inputEmail1").val(res.data.password)
+            //通过for  in 添加
+
+            for (key in res.data) {
+
+                $("." + key).val(res.data[key])
+            }
+
+        }
+    })
+</script>
